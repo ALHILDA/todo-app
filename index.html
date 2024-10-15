@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TO DO LIST</title>
+</head>
+<body>
+  <h1>TODO APP </h1>
+
+  <div class="container">
+    <button class="add-btn" id="addBtnId">Add Task</button>
+    <select class="filter-select" id="filterSelectId">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="incompleted">Incompleted</option>
+    </select>
+
+  </div>
+  
+    <div class="todo-list" id="todoListId">
+        <ul class="task-list" id="taskListId">
+          
+        </ul>
+      </div>
+      
+      <div class="modal-window" id="modalWindowId" style="display: none;">
+        <input type="text" class="task-title" id="taskTitleId" placeholder="Task Title">
+        <textarea id="task-input"placeholder="Enter task" id="text"></textarea>
+        <div class="button-container">
+          <button class="save-btn" id="saveBtnId">Save</button>
+          <button class="close-btn" id="closeBtnId">Close</button>
+        </div>
+      <script src="script.js"></script>
+</body>
+</html>

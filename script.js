@@ -33,7 +33,11 @@ function select(selector) {
   `;
   
   const renderTasks = () => {
-    taskList.innerHTML = tasks.map(task => createTaskHTML(task.title, task.task, task.timestamp, task.isChecked)).join('');
+    if (tasks.length === 0) {
+      taskList.innerHTML = '<li>No data</li>';
+    } else {
+      taskList.innerHTML = tasks.map(task => createTaskHTML(task.title, task.task, task.timestamp, task.isChecked)).join('');
+    }
   };
   
   const closeModal = () => {
@@ -115,15 +119,20 @@ function select(selector) {
   });
   
   filterSelect.addEventListener('change', () => {
-    renderTasks();
     const filterValue = filterSelect.value;
-    Array.from(taskList.children).forEach(task => {
-      const checkbox = task.querySelector('.checkbox');
-      task.style.display = (filterValue === 'completed' && !checkbox.checked) ||
-      (filterValue === 'incompleted' && checkbox.checked) ? 'none' : 'list-item';
+    const filteredTasks = tasks.filter(task => {
+      const checkbox = task.isChecked;
+      return (filterValue === 'completed' && checkbox) ||
+        (filterValue === 'incompleted' && !checkbox) ||
+        filterValue === 'all';
     });
-  });
   
+    if (filteredTasks.length === 0) {
+      taskList.innerHTML = '<li>No data</li>';
+    } else {
+      taskList.innerHTML = filteredTasks.map(task => createTaskHTML(task.title, task.task, task.timestamp, task.isChecked)).join('');
+    }
+  });
   
   window.addEventListener('load', loadTasks);
   
